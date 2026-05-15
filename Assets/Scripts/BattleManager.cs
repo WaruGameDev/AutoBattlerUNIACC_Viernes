@@ -4,9 +4,16 @@ using UnityEngine;
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager instance;
+    public List<UnitData> playerUnitsData;
+    public List<UnitData> enemyUnitsData;
+
     public List<Unit> playerUnits;
     public List<Unit> enemyUnits;
-    public List<Unit> turnUnits;    
+
+    public List<Transform> enemySlots;
+    public List<Transform> playerSlots;
+    public List<Unit> turnUnits;  
+    public GameObject unitPrefab;  
 
     void Awake()
     {
@@ -14,10 +21,33 @@ public class BattleManager : MonoBehaviour
     }
     void Start()
     {
+        GenerateEnemies();
+        GeneratePlayers();
         StartBattle();
+    }
+    public void GenerateEnemies()
+    {       
+        for(int i =0; i < enemyUnitsData.Count; i++)
+        {
+            GameObject uGameObject = Instantiate(unitPrefab, enemySlots[i]);
+            uGameObject.GetComponent<Unit>().isPlayer  = false;
+            uGameObject.GetComponent<Unit>().unitData = enemyUnitsData[i];
+            enemyUnits.Add(uGameObject.GetComponent<Unit>());
+        }       
+    }
+    public void GeneratePlayers()
+    {       
+        for(int i =0; i < playerUnitsData.Count; i++)
+        {
+            GameObject uGameObject = Instantiate(unitPrefab, playerSlots[i]);
+            uGameObject.GetComponent<Unit>().isPlayer  = true;
+            uGameObject.GetComponent<Unit>().unitData = playerUnitsData[i];
+            playerUnits.Add(uGameObject.GetComponent<Unit>());
+        }       
     }
     public void StartBattle()
     {
+        
         SortTurn();
         Battle();
     }

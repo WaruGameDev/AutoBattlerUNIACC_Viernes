@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
+    public UnitData unitData;
     public float health;
     public float maxHealth = 100;
     public float attack= 10;
@@ -13,10 +14,26 @@ public class Unit : MonoBehaviour
     Tween hurtTween;
     public Transform posFront;
     public Image bar;
+    public Transform visual;
+    public bool isPlayer;
     
 
     public void Start()
     {
+        maxHealth = unitData.maxHealth;
+        attack = unitData.attack;
+        defense = unitData.defense;
+        speed = unitData.speed;
+
+        GameObject visualUnit = Instantiate(unitData.model, visual);
+        if(isPlayer)
+        {
+            visualUnit.transform.Rotate(Vector3.up * 90);
+        }
+        else
+        {
+            visualUnit.transform.Rotate(Vector3.up * -90);
+        }
         health = maxHealth;
         hurtTween = transform.DOPunchScale(new Vector3(1.5f,-.5f, 1.5f), .2f).SetAutoKill(false).Pause();
         bar.fillAmount = health / maxHealth;
