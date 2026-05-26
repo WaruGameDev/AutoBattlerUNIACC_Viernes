@@ -16,4 +16,4 @@ MonoBehaviour:
   attack: 10
   defense: 5
   speed: 2
-  model: {fileID: 0}
+  model: {fileID: 919132149155446097, guid: 6f31422dc5576b14bb04c4d714fe9a33, type: 3}
