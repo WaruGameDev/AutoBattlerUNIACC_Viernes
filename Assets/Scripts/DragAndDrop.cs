@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DragAndDrop : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class DragAndDrop : MonoBehaviour
     private Plane     _dragPlane;       // plano horizontal en Y fijo
 
     // ────────────────────────────────────────────────────────────────
+
+    public UnityEvent onDragStart;
+    public UnityEvent onDrop;
     void Awake()
     {
         if (cam == null) cam = Camera.main;
@@ -23,6 +27,7 @@ public class DragAndDrop : MonoBehaviour
 
     void OnMouseDown()
     {
+        onDragStart?.Invoke();
         _fixedY    = transform.position.y;
         _dragPlane = new Plane(Vector3.up, new Vector3(0f, _fixedY, 0f));
 
@@ -52,7 +57,11 @@ public class DragAndDrop : MonoBehaviour
         }
     }
 
-    void OnMouseUp() => _dragging = false;
+    void OnMouseUp()
+    {
+       _dragging = false;
+       onDrop?.Invoke(); 
+    }  
 
     // ── helpers ─────────────────────────────────────────────────────
     private Ray GetMouseRay() => cam.ScreenPointToRay(Input.mousePosition);
