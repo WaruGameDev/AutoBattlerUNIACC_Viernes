@@ -17,3 +17,4 @@ MonoBehaviour:
   defense: 5
   speed: 2
   model: {fileID: 919132149155446097, guid: 3d9b5f60b4a2e4d43ab4385a49c18ab2, type: 3}
+  arquetypes: 0

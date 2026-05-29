@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Unit", menuName = "AutoBattler/Unit")]
 public class UnitData : ScriptableObject
@@ -8,4 +9,5 @@ public class UnitData : ScriptableObject
     public float defense = 5;
     public float speed = 2;
     public GameObject model;
+    public Arquetypes arquetypes = Arquetypes.RANDOM;
 }

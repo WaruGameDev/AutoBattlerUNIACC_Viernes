@@ -3,6 +3,11 @@ using DG.Tweening;
 using System;
 using UnityEngine.UI;
 
+public enum Arquetypes
+{
+    LOOKING_FOR_STRONGEST, LOOKING_FOR_WEAKEST, RANDOM
+}
+
 public class Unit : MonoBehaviour
 {
     public UnitData unitData;
@@ -16,14 +21,16 @@ public class Unit : MonoBehaviour
     public Image bar;
     public Transform visual;
     public bool isPlayer;
+    public Arquetypes arquetypes;
     
 
-    public void Start()
+    public void Init()
     {
         maxHealth = unitData.maxHealth;
         attack = unitData.attack;
         defense = unitData.defense;
         speed = unitData.speed;
+        arquetypes = unitData.arquetypes;
 
         GameObject visualUnit = Instantiate(unitData.model, visual);
         if(isPlayer)
@@ -55,6 +62,9 @@ public class Unit : MonoBehaviour
     }
     public void Die()
     {
+        BattleManager.instance.playerUnits.Remove(this);
+        BattleManager.instance.enemyUnits.Remove(this);
+        BattleManager.instance.turnUnits.Remove(this);
         Destroy(gameObject);
     }
     public void Attack(Unit target, Action onCompleteAttack = null)
