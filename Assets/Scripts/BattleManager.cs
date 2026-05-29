@@ -52,7 +52,6 @@ public class BattleManager : MonoBehaviour
     }
     public void StartBattle()
     {
-        
         SortTurn();
         Battle();
     }
