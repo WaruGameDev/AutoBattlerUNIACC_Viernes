@@ -5,10 +5,12 @@ public class UnitSelector : MonoBehaviour
     public UnitData unitData;
     public Slot currentSlot;
     public Vector3 originalPos;
+    public Transform visual;
 
     void Start()
     {
         originalPos = transform.position;
+        Instantiate(unitData.model, visual);
     }
 
     void OnTriggerEnter(Collider other)
