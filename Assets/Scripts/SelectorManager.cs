@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SelectorManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class SelectorManager : MonoBehaviour
     {
         DataManager.selectedUnitsData.Clear();
         DataManager.selectedUnitsData.AddRange(selectedUnits);
+        SceneManager.LoadScene("SampleScene");
     }
     
 }

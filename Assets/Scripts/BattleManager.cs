@@ -22,6 +22,8 @@ public class BattleManager : MonoBehaviour
     }
     void Start()
     {
+        playerUnitsData.Clear();
+        playerUnitsData.AddRange(DataManager.selectedUnitsData);
         GenerateEnemies();
         GeneratePlayers();
         StartBattle();
@@ -42,12 +44,16 @@ public class BattleManager : MonoBehaviour
     {       
         for(int i =0; i < playerUnitsData.Count; i++)
         {
-            GameObject uGameObject = Instantiate(unitPrefab, playerSlots[i]);
-            Unit unit =  uGameObject.GetComponent<Unit>();
-            unit.isPlayer  = true;
-            unit.unitData = playerUnitsData[i];
-            unit.Init();
-            playerUnits.Add(unit);
+            if(playerUnitsData[i] != null)
+            {
+                GameObject uGameObject = Instantiate(unitPrefab, playerSlots[i]);
+                Unit unit =  uGameObject.GetComponent<Unit>();
+                unit.isPlayer  = true;
+                unit.unitData = playerUnitsData[i];
+                unit.Init();
+                playerUnits.Add(unit);
+            } 
+            
         }       
     }
     public void StartBattle()
