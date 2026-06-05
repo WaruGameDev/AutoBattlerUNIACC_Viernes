@@ -19,13 +19,18 @@ public class BattleManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-    }
-    void Start()
-    {
-        playerUnitsData.Clear();
-        playerUnitsData.AddRange(DataManager.selectedUnitsData);
-        GenerateEnemies();
+        if(DataManager.selectedUnitsData.Count >0)
+        {
+            playerUnitsData.Clear();
+            playerUnitsData.AddRange(DataManager.selectedUnitsData);
+        }       
+        
         GeneratePlayers();
+    }
+   
+    public void InitializeBattle()
+    {       
+        GenerateEnemies();      
         StartBattle();
     }
     public void GenerateEnemies()
@@ -111,6 +116,8 @@ public class BattleManager : MonoBehaviour
             else
             {
                 Debug.Log("Termino la batalla");
+                //revisar si gano jugador
+                DungeonManager.instance.NextEvent();
                 return;
             }
             

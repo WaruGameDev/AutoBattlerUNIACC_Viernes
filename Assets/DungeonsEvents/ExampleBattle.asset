@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e16af2e37719d419be8207ae8e434f, type: 3}
+  m_Name: ExampleBattle
+  m_EditorClassIdentifier: Assembly-CSharp::BattleEvent
+  nameEvent: Batalla de Ejemplo
+  enemies:
+  - {fileID: 11400000, guid: cfe9552dd34cae348a634fdb2c4c0cd9, type: 2}
+  - {fileID: 11400000, guid: 449aa1ebc07ebb943b218ccb42fd6540, type: 2}
+  - {fileID: 11400000, guid: cfe9552dd34cae348a634fdb2c4c0cd9, type: 2}
