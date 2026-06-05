@@ -10,5 +10,10 @@ public class SelectorManager : MonoBehaviour
     {
         instance = this;
     }
+    public void SelectBattlers()
+    {
+        DataManager.selectedUnitsData.Clear();
+        DataManager.selectedUnitsData.AddRange(selectedUnits);
+    }
     
 }
